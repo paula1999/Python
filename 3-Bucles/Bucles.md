@@ -25,7 +25,9 @@ Esta función crea una lista que empieza en `a`, termina antes de `b`, `c` es el
 Por ejemplo:
 
 `range (5)` produce `[0, 1, 2, 3, 4]`
+
 `range (2, 6)` produce `[2, 3, 4, 5]`
+
 `range (-1, 7, 2)` produce `[-1, 1, 3, 5]`
 
 Para desplegar los valores de una lista generada con `range` usamos la instrucción `list`, por ejemplo: `list (range(4))`.
