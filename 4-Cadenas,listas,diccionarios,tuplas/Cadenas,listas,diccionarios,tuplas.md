@@ -65,6 +65,7 @@ La forma de usar las siguientes funciones es `cadena.funcion()`.
 - `lstrip()`: remueve los espacios de la izquierda.
 - `strip()`: realiza `lstrip()` y `rstrip()`.
 - `zfill(N)`: añade ceros al inicio para tener `N` caracteres.
+- `join`: une cadenas para formar una lista de cadenas.
 
 ## 4.2 Listas
 Son colecciones de datos los cuales pueden ser de cualquier tipo. La estructura de las listas es: `lista [a, b, c, ...]`. Se pueden concatenar y sumar, como las cadenas. Además, no son inmutables.
@@ -88,9 +89,38 @@ subcadena = [" y "] # Notar que hay un espacio antes y después de la y
 - `lista.insert(índice, obj)`: inserta `obj` en la posición `índice`.
 - `lista.pop(índice)`: devuelve y elimina de la lista el elemento. Si no se da un índice, devuelve el último elemento.
 - `lista.remove(objeto)`: elimina `objeto` de la lista. Si no existe aparece un error.
-- `lista.reverse()`: invierte el oren de los objetos de la lista.
+- `lista.reverse()`: invierte el orden de los objetos de la lista.
 - `lista.sort()`: ordena los elementos de la lista.
 
 ## 4.3 Tuplas
+Es una estructura de datos conformada por elementos los cuales pueden ser de distinto tipo. Son inmutables. La estructura de las tuplas es: `tupla(a, b, c, ...)`
+
+Se pueden **intercambiar los valores** de las variables más fácil haciendo
+```py
+>>> (a, b) = (b, a)
+```
+
+Otras operaciones con las tuplas son:
+- `tuple(lista)`: convierte una lista a tupla.
+- `len(tupla)`: longitud de una tupla.
+- `max(tupla)`: devuelve el valor máximo de la tupla.
+- `min(tupla)`: devuelve el valor mínimo de la tupla.
 
 ## 4.4 Diccionarios
+Son estructuras de datos consistentes en **listas de pares** de variables. Cada par tiene un elemento llamado **clave (key)** que puede ser de cualquier tipo y otro elemento llamado **valor** que también puede ser de cualquier tipo. El formato de un diccionario es:
+
+`diccionario = { "clave1":valor1, "clave2":valor2, ..., "claveM":valorM}`
+
+No son inmutables. Además, puede darse el caso de que Python cambie el orden de dichos pares.
+
+Otras operaciones con los diccionarios son:
+- `str(diccionario)`: convierte el diccionario en cadena.
+- `type(variable)`: devuelve el tipo de la variable.
+- `dicc.clear()`: elimina todos los elementos.
+- `dicc.copy()`: copia el diccionario en otra variable.
+- `dicc.fromkeys(lista, valor)`: crea un nuevo diccionario. Las claves son de lista con valor.
+- `dicc.get(clave)`: devuelve el valor de la clave.
+- `dicc.has_key(clave)`: devuelve `true` si la clave está en el diccionario.
+- `dicc.items()`: devuelve una lista de pares (clave, valor).
+- `dicc1.update(dicc2)`: añade los pares clave-valor de dicc2 al dicc1.
+- `dicc.values()`: devuelve una lista con los valores.
