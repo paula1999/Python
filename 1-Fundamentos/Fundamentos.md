@@ -64,7 +64,7 @@ Los utilizaremos para comparar.
 ### 1.2.3 Operadores lógicos.
 En orden de precedencia (más a menos):
 
-- **not**: `not`.
+- **not**: `not` o `!`.
 - **and**: `&` o `and`.
 - **or exclusivo**: `^`.
 - **or**: `|` u `or`.
