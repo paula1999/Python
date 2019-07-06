@@ -92,5 +92,3 @@ for linea in lista:
 ```
 
 5. Cerrar el archivo: `identificador.close()`.
-
-## 8.5
