@@ -73,7 +73,7 @@ for linea in csv.reader(archivo):
 
 ```py
 import pprint
-pprint.pprint(tabla)
+pprint.pprint(lista)
 ```
 
 ### 8.4.2 Escritura de datos en Excel
