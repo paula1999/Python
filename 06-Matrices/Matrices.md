@@ -1,6 +1,6 @@
 # 6. Matrices
 ## 6.1 Matrices
-Se escriben como listas de listas: `matriz[ [a, b, c, ...], [a', b', c', ...], ..., ]`. Además, si queremos generar una matriz vacía y posteriormente llenarlo con los datos requeridos podemos hacer lo siguiente:
+Se escriben como listas de listas: `matriz[ [a, b, c, ...], [a', b', c', ...], ..., ]`. Además, si queremos generar una matriz vacía y posteriormente llenarla con los datos requeridos podemos hacer lo siguiente:
 
 ```py
 A = []

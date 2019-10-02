@@ -14,4 +14,4 @@ Además, los vectores se pueden definir usando el **método de comprensión**. E
 [0, 1, 4, 9, 16]
 ```
 
-El tamaño de un vector se puede modificar más elementos utilizando la instrucción `append` (se inserta al final del vector).
+El tamaño de un vector se puede modificar añadiendo más elementos utilizando la instrucción `append` (se inserta al final del vector).
