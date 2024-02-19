@@ -83,6 +83,19 @@ spark.sql("SELECT * FROM archivo").show()
 
 ## Guardar dataframe
 
+### Storage
+
+```py
+(df_table.write
+    .mode("overwrite")
+    .format("delta")
+    # .option("overwriteSchema", "true")
+    .save(save_path + table)
+)
+```
+
+### Catálogo
+
 ```py
 df_save_list = [
     {
