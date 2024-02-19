@@ -14,6 +14,25 @@ spark = SparkSession.builder.appName("Sesion").getOrCreate()
 df = spark.read.json('archivo.json')
 ```
 
+## Leer del storage account
+
+```py
+path = f'abfss://default@stabd{env}neu{name}.dfs.core.windows.net'
+table = '/app/table'
+spark.read.format("delta").load(
+    path + table
+)
+```
+
+## Leer del catálogo
+
+```py
+path = f'{env}_{name}.{esquema_nombre}.table'
+spark.read.format("delta").load(
+    path
+)
+```
+
 ## Mostrar los datos
 
 ```py
@@ -59,4 +78,31 @@ df.createOrReplaceTempView("archivo")
 
 ```py
 spark.sql("SELECT * FROM archivo").show()
+```
+
+
+## Guardar dataframe
+
+```py
+df_save_list = [
+    {
+      "df": df_table,
+      "table_name": "table"
+    }
+]
+
+app_path = f'{env}_{name}.{esquema_nombre}.table'
+
+for idx, aux_dict in enumerate(df_save_list):
+    print(f"Guardando {aux_dict['table_name']} - {idx + 1}/{len(df_save_list)}")
+    t_0 = time.time()
+    file_path = app_path + aux_dict["table_name"]
+    # spark.sql(f"DROP TABLE IF EXISTS {env}_{name}.{esquema_nombre}.{aux_dict['table_name']}")
+    (aux_dict["df"].write.format("delta")
+        .mode("overwrite")
+        # .option("overwriteSchema", True)
+        .option('path', file_path)
+        .saveAsTable(f'{env}_{name}.{esquema_nombre}.{aux_dict["table_name"]}')
+        )
+    print(f"Tiempo en guardar en catálogo Gold: {(time.time() - t_0):.3f} segundos")
 ```
