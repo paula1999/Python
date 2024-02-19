@@ -32,3 +32,20 @@ new_df = assembler.transform(df)
 | col |
 |---|
 | [a, b, c]|
+
+### Transformación de variables numéricas y categóricas
+
+```py
+def transform_data(data, categorical_cols, numerical_col, def_model):
+    # Transformación de variables categóricas
+    indexers = [ft.StringIndexer(inputCol=col, outputCol=col + "_index", handleInvalid="keep") for col in categorical_col]
+    encoders = [ft.OneHotEncoder(inputCol=col + "_index", outputCol=col + "_encoded") for col in categorical_col]
+
+    # Ensamblar todas las características en un solo vector
+    assembler = ft.VectorAssembler(inputCols=[col + "_encoded" for col in categorical_col] + numerical_col, outputCol="features")
+
+    # Crear el pipeline
+    pipeline = ml.Pipeline(stages=indexers + encoders + [assembler, def_model])
+
+    return pipeline
+```
