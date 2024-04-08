@@ -14,6 +14,20 @@ spark = SparkSession.builder.appName("Sesion").getOrCreate()
 df = spark.read.json('archivo.json')
 ```
 
+```py
+df = (spark.read
+    .format('csv')
+    .option("header", True)
+    .option("inferSchema", False)  # All types casted to string
+    .option('encoding', 'utf8')
+    .option("delimiter", delimiter)
+    .option ("quote", "\"")
+    .option ("escape", "\"")
+    .option("multiline", "true")
+    .load(file_path)
+)
+```
+
 ## Leer del storage account
 
 ```py
@@ -27,8 +41,8 @@ spark.read.format("delta").load(
 ## Leer del catálogo
 
 ```py
-path = f'{env}_{name}.{esquema_nombre}.table'
-spark.read.format("delta").load(
+path = f'{env}_{name}.{esquema_nombre}.{table_name}'
+spark.read.table.load(
     path
 )
 ```
