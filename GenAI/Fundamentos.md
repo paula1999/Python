@@ -51,4 +51,24 @@ Con los agentes, los LLM pueden elegir y llevas a cabo una serie de acciones com
 
 - **Encoder only models**: funciona como un modelo secuencia a secuencia, de esta forma la entrada y la salida tienen la misma longitud. Ejemplos: clasificacion de análisis de sentimientos.
 - **Encoder-decoder models**: realiza tareas secuencia a secuencia, de tal manera que la entrada y la salida tienen diferente longitud. Ejemplos: traducir, generación de texto...
-- **Decoder only models**: pueden realizar casi cualquier tarea. 
+- **Decoder only models**: pueden realizar casi cualquier tarea.
+
+## Prompt engineering
+### Zero shot inference
+Se le pide al LLM que haga una cosa.
+
+### In-context learning (ICL) - one shot inference
+En el texto de entrada se muestra un ejemplo de lo que debe hacer el modelo, y luego se le pide que haga algo parecido.
+
+### In-context learning (ICL) - few shot inference
+Igual que el anterior, pero se le pasan varios ejemplos.
+
+## Configuración - parámetros de inferencia
+
+- Máximo del número de tokens: limitar el número de tokens que el modelo genera.
+- Modo de elección de la salida:
+    - Greedy: se elige la palabra/token con la mayor probabilidad.
+    - Random sampling: se elige aleatoriamente una palabra basándose en los pesos de cada probabilidad.
+- Sampling top k: solo seleccionar entre los `k` tokens que tengan mayor probabilidad.
+- Sampling top p: solo seleccionar entre los que la suma de probabilidades sea menor o igual a `p`
+- Temperature: tiene influencia sobre la forma de la distribución de la probabilidad que el modelo calcula para el siguiente token. Cuanta más alta (>1) sea la temperatura, más aleatorio será; es decir, cuanto más baja sea (<1), más tendrá en cuenta la probabilidad de cada palabra.
