@@ -10,13 +10,15 @@ De esta manera, dando contexto relevante, le podemos pedir a un LLM que lea una 
 
 ### Fine-tuning
 
-Es una técnica para darle más información a los LLM, en concreto, cuando el texto de entrada es demasiado grande.
+Es una técnica para darle más información a los LLM, en concreto, cuando el texto de entrada es demasiado grande. Sirve para que el modelo pueda hacer gran variedad de tareas.
 
 Se usa cuando una tarea a realizar no es fácil de definir en la entrada, como por ejemplo para especificar el tipo de estilo de un resumen, hablar o escribir con el estilo de una persona.
 
 También se puede usar para ayudar a los LLM a ganar conocimiento específico, como notas médicas, documentos legales...
 
 También se puede usar para conseguir un modelo más pequeño que haga una tarea.
+
+Básicamente, se encarga de mostrarle ejemplos de cómo debería responder a una instrucción expecífica
 
 ### Preentrenar un LLM
 
@@ -68,6 +70,8 @@ Igual que el anterior, pero se le pasan varios ejemplos.
 - Máximo del número de tokens: limitar el número de tokens que el modelo genera.
 - Modo de elección de la salida:
     - Greedy: se elige la palabra/token con la mayor probabilidad.
+ 
+
     - Random sampling: se elige aleatoriamente una palabra basándose en los pesos de cada probabilidad.
 - Sampling top k: solo seleccionar entre los `k` tokens que tengan mayor probabilidad.
 - Sampling top p: solo seleccionar entre los que la suma de probabilidades sea menor o igual a `p`
