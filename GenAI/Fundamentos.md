@@ -70,9 +70,46 @@ Igual que el anterior, pero se le pasan varios ejemplos.
 - Máximo del número de tokens: limitar el número de tokens que el modelo genera.
 - Modo de elección de la salida:
     - Greedy: se elige la palabra/token con la mayor probabilidad.
- 
-
     - Random sampling: se elige aleatoriamente una palabra basándose en los pesos de cada probabilidad.
 - Sampling top k: solo seleccionar entre los `k` tokens que tengan mayor probabilidad.
 - Sampling top p: solo seleccionar entre los que la suma de probabilidades sea menor o igual a `p`
 - Temperature: tiene influencia sobre la forma de la distribución de la probabilidad que el modelo calcula para el siguiente token. Cuanta más alta (>1) sea la temperatura, más aleatorio será; es decir, cuanto más baja sea (<1), más tendrá en cuenta la probabilidad de cada palabra.
+
+## Parámetros eficientees fine-tuning (PEFT)
+
+- **Selección**: seleccionar un subconjunto de los parámetros de LLM para fine-tune
+- **Reparametrización**: reparametrizar los pesos delmodelo usando una representación de bajo rango. **LoRA**
+- **Aditivo**: agregar capas o parámetros entrenables al modelo. Adaptadores o indicaciones suaves (*soft prompts*, *Prompt Tuning*).
+
+### Técnica 1: LoRA
+Reduce el número de parámetros al entrenar
+
+- Congela los parámetros del modelo original
+- Inyecta dos matrices de descomposición de rangos
+- Entrena los pesos de las matrices pequeñas
+
+### Técnica 2: indicaciones suaves (soft prompts)
+
+Con prompt tuning, se añaden tokens entrenables adicionables al prompt. El conjunto de tokens entrenables se llama **soft prompt** y suelen ser 20-100 tokens.
+
+En fine tuning, el conjunto de entrenamiento consiste en prompts de entrada y etiquetas o *completions* de salida. Los pesos del LLM se actualizan durante el aprendizaje supervisado.
+
+Por otra parte, con prompt tuning, los pesos del LLM se congelan y el modelo no se actualiza. En cambio, los vectores del soft prompt se actualizan con el tiempo para optimizar el *completion* del modelo del prompt
+
+
+## Evaluación del modelo: métricas
+
+### LLM
+
+$$accuracy = \frac{\text{predicciones correctas}}{\text{total predicciones}}$$
+
+- ROUGE
+  - Se usa para resúmenes de texto.
+  - Compara un resumen con otro o más resumenes.
+  - $recall = \frac{\text{coincidencias de unigramas}}{\text{unigramas en referencia}}$
+  - $precision = \frac{\text{coincidencias de unigramas}}{\text{unigramas en la salida}}$
+  - $F1 = 2 \frac{precision \cdot recall}{precision + recall}$
+- BLEU SCORE
+  - Se usa para traducciones.
+  - Compara las traducciones hechas por personas.
+  - $\text{bleu metric} = avg(\text{precision en todo el rango de tamaños de n gramos})$
