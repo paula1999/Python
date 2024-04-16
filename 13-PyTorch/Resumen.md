@@ -50,7 +50,7 @@ t - a
 t * n
 t.mean()
 t.std()
-t-mean(0) # mean along a particular dimension
+t.mean(0) # mean along a particular dimension
 # Equivalently, you could also write:
 # t.mean(dim=0)
 # t.mean(axis=0)
@@ -69,7 +69,7 @@ import torch.nn as nn
 ### nn.Linear
 
 ```py
-linear = nn.Linear(i, j) # i: number of input dimensions; j: number of output dimensions.
+linear = nn.Linear(i, j) # i: number of input dimensions; j: number of output dimensions
 example_input = torch.randn(3, 10)
 example_output = linear(example_input)
 example_output
@@ -87,7 +87,7 @@ relu_output
 
 ```py
 batchnorm = nn.BatchNorm1d(2)
-batchnorm_output = batchnorm(relu_output) # normalization technique that will rescalea batch of n inputs to have a consistent mean and standard deviation between batches
+batchnorm_output = batchnorm(relu_output) # normalization technique that will rescale a batch of n inputs to have a consistent mean and standard deviation between batches
 batchnorm_output
 ```
 
