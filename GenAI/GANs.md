@@ -34,3 +34,60 @@ No se suele usar en capas ocultas porque en los extremos las derivadas son casi 
 ### Tanh
 
 Devuelve valores entre -1 y 1. Cuando el valor es positivo, devuelve un número entre 0 y 1; mientras que cuando el valor es negativo, devuelve un número entre -1 y 0. De esta forma, conserva el signo de cada valor.
+
+
+## Batch Normalization
+
+Durante el entrenamiento, en cada capa se normalizan los valores para que tengan media 0 y desviación estándar 1, y luego se reescalan con dos parámetros: *shift factor* y *scale factor*.
+
+Durante el test, se usa la media y desviación estándar del conjunto de entrenamiento.
+
+
+## Convolutions
+
+Las convoluciones nos permiten detectar características claves en diferentes áreas (ventanas) de una imagen usando filtros.
+
+![image](https://github.com/paula1999/Python/assets/32401901/789b967a-ec1a-4048-a540-04d962990fc2)
+
+### Stride
+
+Indica cada cuantos bloques a la derecha o hacia abajo se aplica el filtro.
+
+### Padding
+
+Normalmente, el filtro se aplica más veces en los píxeles del centro que en los extremos. Si queremos darle importancia a los extremos, se puede crear un marco sobre la imagen de tal forma que toda la información quede en el centro de la imagen y cada pixel se visita el mismo número de veces.
+
+## Pooling
+
+Se usa para reducir el tamaño de la entrada.
+
+- **Max pooling**: toma el máximo de entre los valores de cada pixel en cada ventana. Sirve para extraer la información destacada.
+- **Average pooling**.
+- **Min pooling**.
+
+
+## Upsampling
+
+Se usa para aumentar el tamaño de la entrada, es decir, devolver una imagen con mayor resolución. Esto se hace infiriendo valores para los píxeles adicionales.
+
+- **Nearest Neighbors**. Primero, se asigna el valor de la esquina de arriba a la izquierda igual al valor de entrada de arriba a la izquierda. El resto de valores de los píxeles de entrada se añaden con una distancia de ciertos píxeles, dependiendo del tamaño de salida. Finalmente, se asigna el mismo valor a los píxeles cercanos.
+
+| a | b |
+|---|---|
+| c | d |   
+
+| a | a | b | b |
+|---|---|---|---|
+| a | a | b | b |
+| c | c | d | d |
+| c | c | d | d |
+
+- **Linear interpolation**.
+- **Bi-linear interpolation**.
+
+
+## Transposed Convolutions
+
+Son convolutiones con upsampling y tienen parámetros aprendibles.
+
+![image](https://github.com/paula1999/Python/assets/32401901/380ce683-8005-4c93-9147-24786ab5fcde)
