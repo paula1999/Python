@@ -91,3 +91,20 @@ Se usa para aumentar el tamaño de la entrada, es decir, devolver una imagen con
 Son convolutiones con upsampling y tienen parámetros aprendibles.
 
 ![image](https://github.com/paula1999/Python/assets/32401901/380ce683-8005-4c93-9147-24786ab5fcde)
+
+
+## Conditional Generation
+
+Permite especificar la clase que el generador tiene que producir.
+
+
+| Condicional                                        | No condicional                                             |
+| ---                                                | ---                                                        |
+| Ejemplos de clases que quieres                     | Ejemplos de clases aleatorias                              |
+| El conjunto de entrenamiento debe estar etiquetado | El conjunto de entrenamiento no tiene que estar etiquetado |
+
+- La clase se le pasa al generador como un one-hot vector.
+- La clase se le pasa al discriminador como una one-hot matriz.
+- El tamaño del vector y el número de matrices representan el número de clases.
+
+
