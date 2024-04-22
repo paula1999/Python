@@ -108,3 +108,20 @@ Permite especificar la clase que el generador tiene que producir.
 - El tamaño del vector y el número de matrices representan el número de clases.
 
 
+
+## Controllable Generation
+
+Permite cambiar características específicas de la salida.
+
+Se puede retocar el vector de ruido de entrada para conseguir diferentes características en la salida.
+
+| Controlable                                                | Condicional                                        |
+| ---                                                        | ---                                                |
+| Ejemplos con las características que quieres               | Ejemplos de clases que quieres                     |
+| El conjunto de entrenamiento no tiene que estar etiquetado | El conjunto de entrenamiento debe estar etiquetado |
+| Manipular el vector z de entrada                           | Concatenar un vector de clases a la entrada        |
+
+- La generación controlable te permite tener control sobre las características generadas.
+- No necesita un conjunto de entrenamiento etiquetado.
+- El vector de entrada se retoca con diferentes características.
+
