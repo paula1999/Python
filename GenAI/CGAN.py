@@ -193,7 +193,7 @@ def combine_vectors(x, y):
         with the shape (n_samples, n_classes), but you shouldn't assume this in your code.
     '''
     # Note: Make sure this function outputs a float no matter what inputs it receives
-    combined = torch.cat((x, y), dim = 1).float()
+    combined = torch.cat((x.float(), y.float()), dim = 1)
     return combined
 
 
