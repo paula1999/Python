@@ -113,3 +113,51 @@ $$accuracy = \frac{\text{predicciones correctas}}{\text{total predicciones}}$$
   - Se usa para traducciones.
   - Compara las traducciones hechas por personas.
   - $\text{bleu metric} = avg(\text{precision en todo el rango de tamaños de n gramos})$
+
+
+
+## Aprendizaje reforzado a partir de la retroalimentación humana (RLHF)
+
+Se aplica fine-tuning con la retroalimentación de las respuestas humanas.
+
+El aprendizaje reforzado (RL) es un tipo de aprendizaje automático enel cual un agente aprende a tomar decisiones relacionadas con un objetivo específico tomando acciones en un ambiente. El objetivo es maximizar la recompensa recibida por las acciones.
+
+En este caso, el agente es el LLM y su objetivo es generar texto alineado.
+
+El primer paso es seleccionar el modelo y usarlo para preparar el conjunto de datos para la retroalimentación humana. Se usa este LLM junto con un dataset de entrada para generar un número diferente de respuestas para cada entrada. El dataset de entrada está compuesto de múltiples entradas, cada uno se procesa por el LLM para producir un conjunto de terminaciones. 
+
+El siguiente paso es conseguir retroalimentación humana sobre las terminaciones generadas. Para ello, se define el criterio que debe seguir el modelo y para cada respuesta que se ha generado, se obtiene la retroalimentación humana a través de etiquetas.
+
+```
+Prompt: My house is too hot
+
+# Generation
+Completion 1: There is nothing you can do about hot houses.
+Completion 2: You can cool your house with air conditioning.
+Completion 3: It is not too hot.
+
+# Rank the completions with criterion (helpfulness)
+Completion 1: 2
+Completion 2: 1
+Completion 3: 3
+```
+
+Una vez asignado el ranking, dependiendo del número N de terminaciones alternativas por prompt, se tendrá N combinaciones de dos terminaciones. Para cada par, se asignará una recompensa de 1 para la respuesta preferida y 0 para la respuesta menos preferida.
+
+```
+# Convert rankings 
+Completion 1 y 2: [0, 1]
+Completion 1 y 3: [1, 0]
+Completion 2 y 3: [1, 0]
+```
+
+Luego se reordenan los prompts para que la opción preferida esté primero.
+
+```
+# Reordenar rankings 
+Completion 2 y 1: [1, 0]
+Completion 1 y 3: [1, 0]
+Completion 2 y 3: [1, 0]
+```
+
+
