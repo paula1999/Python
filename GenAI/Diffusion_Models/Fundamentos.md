@@ -20,3 +20,25 @@ Primero, se le pasa como entrada a la red neuronal entrenada una muestra de ruid
 
 Además, se le puede añadir ruido adicional antes de que pase a la siguiente iteración para estaibilizar la red neuronal y no converja al mismo elemento.
 
+
+
+## Red neuronal
+
+La red neuronal de los modelos de difusión tiene la arquitectura UNet.
+
+![image](https://github.com/paula1999/Python/assets/32401901/03b000b4-b8fa-4c70-84c1-79c1dce26dde)
+
+Puede recibir más información en forma de incrustaciones (embeddings).
+
+- Time embedding: relacionado con el tiempo de cada iteración y el nivel de ruido.
+- Context embedding: relacionado con controlar lo que genera el modelo.
+
+![image](https://github.com/paula1999/Python/assets/32401901/9a9eb646-7df4-4b32-8eb9-4402b12ccd3c)
+
+```py
+cemb1 = self.contextembed1(c).view(-1, self.n_feat * 2, 1, 1)
+temb1 = self.timeembed1(t).view(-1, self.n_feat * 2, 1, 1)
+
+up2 = self.up1(cemb1 * up1 + temb1, down2)
+```
+
