@@ -171,3 +171,38 @@ samples, intermediate_ddpm = sample_ddpm(32)
 animation_ddpm = plot_sample(intermediate_ddpm,32,4,save_dir, "ani_run", None, save=False)
 HTML(animation_ddpm.to_jshtml())
 
+
+
+
+# Demonstrate incorrectly sample without adding the 'extra noise'
+# incorrectly sample without adding in noise
+@torch.no_grad()
+def sample_ddpm_incorrect(n_sample):
+    # x_T ~ N(0, 1), sample initial noise
+    samples = torch.randn(n_sample, 3, height, height).to(device)  
+
+    # array to keep track of generated steps for plotting
+    intermediate = [] 
+    for i in range(timesteps, 0, -1):
+        print(f'sampling timestep {i:3d}', end='\r')
+
+        # reshape time tensor
+        t = torch.tensor([i / timesteps])[:, None, None, None].to(device)
+
+        # don't add back in noise
+        z = 0
+
+        eps = nn_model(samples, t)    # predict noise e_(x_t,t)
+        samples = denoise_add_noise(samples, i, eps, z)
+        if i%20==0 or i==timesteps or i<8:
+            intermediate.append(samples.detach().cpu().numpy())
+
+    intermediate = np.stack(intermediate)
+    return samples, intermediate
+
+
+# visualize samples
+plt.clf()
+samples, intermediate = sample_ddpm_incorrect(32)
+animation = plot_sample(intermediate,32,4,save_dir, "ani_run", None, save=False)
+HTML(animation.to_jshtml())
