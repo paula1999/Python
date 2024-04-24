@@ -17,3 +17,6 @@ De esta forma, se pueden generar nuevos sprites a partir de los datos de entrena
 La red neuronal intenta predecir todo el ruido en cada paso.
 
 Primero, se le pasa como entrada a la red neuronal entrenada una muestra de ruido. Esta red neuronal predice el ruido y elimina dicho ruido de la muestra de entrada. Esto se repite multiples veces para conseguir sprites de alta calidad.
+
+Además, se le puede añadir ruido adicional antes de que pase a la siguiente iteración para estaibilizar la red neuronal y no converja al mismo elemento.
+
