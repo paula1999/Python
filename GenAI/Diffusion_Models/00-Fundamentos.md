@@ -42,3 +42,28 @@ temb1 = self.timeembed1(t).view(-1, self.n_feat * 2, 1, 1)
 up2 = self.up1(cemb1 * up1 + temb1, down2)
 ```
 
+La red neuronal aprende a predecir ruido, aunque realmente aprende la distribución de lo que no es ruido.
+
+
+## Training
+
+A la hora de entrenar una red neuronal, elegimos muestras y le añadimos un nivel de ruido a cada imagen en cada paso.
+
+
+## Controlling
+
+
+Embeddings son vectores que captan el significado del texto.
+
+Los textos que tienen contenido similar tienen vectores similares.
+
+De esta manera, se entrena la red neuronal con imágenes junto al texto que las describe, y así se podrá predecir una nueva imagen a partir de un texto.
+
+El contexto es un vector para controlar la generación del modelo, puede ser un embedding de texto o categorías.
+
+
+## Fast Sampling (DDIM)
+
+Con DDIM (Denoising Diffusion Implicit Models) se puede acelerar el sampling.
+
+DDIM se salta algunos timesteps, predice una idea de la salida final y la define mediante el proceso de eliminación de ruido.
